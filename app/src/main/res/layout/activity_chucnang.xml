@@ -13,7 +13,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/datebieudo"/>
+        android:id="@+id/datebieudo"
+        android:hint="Nhập chu kỳ nợ"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,5 +30,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/bieudo3"
         android:text="Biểu đồ tròn mytv"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/baocuoc"
+        android:text="Báo cước"/>
+
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>

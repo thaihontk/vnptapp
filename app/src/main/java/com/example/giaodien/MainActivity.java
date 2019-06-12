@@ -17,13 +17,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText edituser, editpassword;
-    Button btndangky, btndangnhap, btnthoat;
+    Button btndangky, btndangnhap, btnthoat,buttonTest;
     int nhomnd_id;
 
     @Override
@@ -40,16 +44,23 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(getApplicationContext(),"Nhập tên đăng nhập và mật khẩu!", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
-
+        buttonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, baocuoc.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void anhXa() {
         edituser= (EditText)findViewById(R.id.edittextuser);
         editpassword= (EditText)findViewById(R.id.edittextpassword);
         btndangnhap=(Button)findViewById(R.id.buttondangnhap);
-
+        buttonTest=(Button)findViewById(R.id.buttonTest);
         btnthoat=(Button)findViewById(R.id.buttonthoat);
 
     }
@@ -57,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         if(edituser.getText().toString().trim().equals("")){
             return false;
         }if(editpassword.getText().toString().trim().equals("")){
+            return false;
+        }if(!edituser.getText().toString().trim().matches("[a-zA-z0-9]+")) {
             return false;
         }else return true;
     }
@@ -68,21 +81,42 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(),response.trim(), Toast.LENGTH_LONG).show();
                 if (edituser.getText().toString().trim().contains(response.trim())){
-                    Toast.makeText(getApplicationContext(),"Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
                 }else {
-
-                    nhomnd_id = Integer.parseInt(String.valueOf(response.trim().charAt(response.trim().length()-1)));
-                    put_dn(nhomnd_id);
-                    switch (nhomnd_id){
-                        case 1:
-                            Toast.makeText(getApplicationContext(),"Đăng nhập thành công với quyền quản trị", Toast.LENGTH_SHORT).show();
-                            break;
-                        case 2:
-                            Toast.makeText(getApplicationContext(),"Đăng nhập thành công với quyền thành viên", Toast.LENGTH_SHORT).show();
-                            break;
-                        case 3:
-                            Toast.makeText(getApplicationContext(),"Đăng nhập thành công với quyền khách", Toast.LENGTH_SHORT).show();
-                            break;
+                    try {
+                        JSONArray jsonArray = new JSONArray(response.trim());
+                        JSONObject jsonObject = (JSONObject)jsonArray.get(0);
+                        int nhomnd_id = jsonObject.getInt("NHOMND_ID");
+                        //Toast.makeText(getApplicationContext(),nhomnd_id+" ", Toast.LENGTH_SHORT).show();
+                        put_dn(nhomnd_id);
+                        switch (nhomnd_id) {
+                            case 1:
+                                Toast.makeText(getApplicationContext(), "Đăng nhập thành công với quyền quản trị", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 2:
+                                Toast.makeText(getApplicationContext(), "Đăng nhập thành công với quyền thành viên", Toast.LENGTH_SHORT).show();
+                                break;
+                            case 3:
+                                Toast.makeText(getApplicationContext(), "Đăng nhập thành công với quyền khách", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }catch (JSONException e){
+                        //Toast.makeText(getApplicationContext(), "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                        try {
+                            JSONArray jsonArray = new JSONArray(response.trim());
+                            JSONObject jsonObject = (JSONObject) jsonArray.get(0);
+                            int ttdn_id = jsonObject.getInt("TTDN_ID");
+                            switch (ttdn_id){
+                                case 3:
+                                    Toast.makeText(getApplicationContext(), "Sai mật khẩu", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 4:
+                                    Toast.makeText(getApplicationContext(), "Sai tài khoản", Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
+                        }catch (JSONException e1){
+                            Toast.makeText(getApplicationContext(), "Lỗi", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".thongtinckn"></activity>
+        <activity android:name=".baocuoc"></activity>
+        <activity android:name=".thongtinckn" />
         <activity android:name=".vuotchon" />
         <activity android:name=".chucnang" />
         <activity android:name=".bieudo3" />
