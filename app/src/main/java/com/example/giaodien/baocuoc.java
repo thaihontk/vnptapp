@@ -72,7 +72,7 @@ public class baocuoc extends AppCompatActivity {
                     String sotk = jsonObject.getString("SO_TK");
                     String nganhang = jsonObject.getString("NGANHANG");
 
-                    Toast.makeText(getApplicationContext(),ten.toString()+" ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),ten.trim()+" ", Toast.LENGTH_LONG).show();
                 }catch (JSONException e){
                     Toast.makeText(getApplicationContext(),e.toString(), Toast.LENGTH_LONG).show();
                 }
