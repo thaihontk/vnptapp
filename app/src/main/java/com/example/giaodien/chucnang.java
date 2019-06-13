@@ -129,9 +129,7 @@ public class chucnang extends AppCompatActivity {
     private class MyProcessEvent implements AdapterView.OnItemSelectedListener {
         //khi có chọn lựa thi vào hàm này
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-            //arg2 là phần tử được chọn trong data source
-            //Toast.makeText(getApplicationContext(),spinner.getSelectedItem().toString() , Toast.LENGTH_SHORT).show();
-            //datebieudo.setText(spinner.getSelectedItem().toString());
+
         }
         //Nếu không chọn gì cả
         public void onNothingSelected(AdapterView<?> arg0) {
