@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         anhXa();
         thoatButton();
+        doi("5484154");
         btndangnhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,12 +51,30 @@ public class MainActivity extends AppCompatActivity {
         buttonTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, chucnang.class);
+                Intent intent = new Intent(MainActivity.this, thongtinbaocuoc.class);
                 startActivity(intent);
             }
         });
     }
+    private void doi(String a){
+        char[] chuoi = a.toCharArray();
+        String[] donvi = new String[chuoi.length];
+        String[] so = new String[chuoi.length];
+        int dodai=chuoi.length;
+        String kq="" ;
+        //khai báo kí tự
+        if(Character.toString(chuoi[1]).equals("4")){
+            Toast.makeText(getApplicationContext(),chuoi[1]+"", Toast.LENGTH_LONG).show();
+        }else Toast.makeText(getApplicationContext(),chuoi[1]+"looix", Toast.LENGTH_LONG).show();
 
+        /*
+        while (!(dodai ==0)){
+            kq.concat(so[dodai]);
+            kq.concat(donvi[dodai]);
+            dodai=dodai-1;
+        }*/
+        Toast.makeText(getApplicationContext(),dodai+"", Toast.LENGTH_LONG).show();
+    }
     private void anhXa() {
         edituser= (EditText)findViewById(R.id.edittextuser);
         editpassword= (EditText)findViewById(R.id.edittextpassword);
@@ -74,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         }else return true;
     }
     private void dangnhap(){
-        String url ="http://10.97.47.116:8080/test2.php";
+        String url ="http://10.97.47.23:8080/test2.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

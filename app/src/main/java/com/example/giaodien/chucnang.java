@@ -85,7 +85,7 @@ public class chucnang extends AppCompatActivity {
     }
     private void bangchon(){
         final List<String> arr = new ArrayList<>();
-        String url ="http://10.97.47.116:8080/ckno.php";
+        String url ="http://10.97.47.23:8080/ckno.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

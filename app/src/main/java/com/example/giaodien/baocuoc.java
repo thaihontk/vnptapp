@@ -1,5 +1,6 @@
 package com.example.giaodien;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +43,8 @@ public class baocuoc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dulieu2();
+                /*Intent intent = new Intent(baocuoc.this, thongtinbaocuoc.class);
+                startActivity(intent);*/
             }
         });
     }
@@ -49,7 +54,7 @@ public class baocuoc extends AppCompatActivity {
         textThang = (EditText)findViewById(R.id.textThang);
     }
     private void dulieu(){
-        String url ="http://10.97.47.116:8080/dvthu.php";
+        String url ="http://10.97.47.23:8080/dvthu.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -72,7 +77,7 @@ public class baocuoc extends AppCompatActivity {
                     String sotk = jsonObject.getString("SO_TK");
                     String nganhang = jsonObject.getString("NGANHANG");
 
-                    Toast.makeText(getApplicationContext(),ten.trim()+" ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),ten.toString()+" ", Toast.LENGTH_LONG).show();
                 }catch (JSONException e){
                     Toast.makeText(getApplicationContext(),e.toString(), Toast.LENGTH_LONG).show();
                 }
@@ -87,7 +92,7 @@ public class baocuoc extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("user1name","1");
+                params.put("chukyno","20190501");
                 //params.put("pass1word",editpassword.getText().toString().trim());
                 return params;
             }
@@ -95,7 +100,7 @@ public class baocuoc extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
     private void dulieu2() {
-            String url ="http://10.97.47.116:8080/dvthu2.php";
+            String url ="http://10.97.47.23:8080/dvthu2.php";
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
@@ -104,10 +109,24 @@ public class baocuoc extends AppCompatActivity {
                     try{
                         JSONArray jsonArray = new JSONArray(response.trim());
                         JSONObject jsonObject = (JSONObject)jsonArray.get(0);
+                        int donvitv_id = jsonObject.getInt("DONVITC_ID");
+                        int thanhtoan_id = jsonObject.getInt("THANHTOAN_ID");
+                        String matt = jsonObject.getString("MA_TT");
                         String ten = jsonObject.getString("TEN_TT");
+                        String diachi = jsonObject.getString("DIACHI_CT");
+                        String matb = jsonObject.getString("MATB_DD");
+                        String hinhthuc = jsonObject.getString("HINHTHUC_TT");
+                        String mst = jsonObject.getString("MST");
+                        int cuoc = jsonObject.getInt("CUOC");
+                        int vat = jsonObject.getInt("VAT");
+                        int khuyenmai = jsonObject.getInt("KHUYENMAI");
+                        int tongtien = jsonObject.getInt("TONGTIEN");
+
                         Toast.makeText(getApplicationContext(),ten+" ", Toast.LENGTH_LONG).show();
                     }catch (JSONException e){
                         Toast.makeText(getApplicationContext(),e.toString(), Toast.LENGTH_LONG).show();
+                    }catch (Exception e1){
+
                     }
 
                 }
@@ -120,7 +139,8 @@ public class baocuoc extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
-                    params.put("user1name","1");
+                    params.put("matb","stgst2428");
+                    params.put("chukyno","20190501");
                     //params.put("pass1word",editpassword.getText().toString().trim());
                     return params;
                 }

@@ -3,7 +3,7 @@
     package="com.example.giaodien">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".baocuoc"></activity>
+        <activity android:name=".thongtinbaocuoc"></activity>
+        <activity android:name=".baocuoc" />
         <activity android:name=".thongtinckn" />
         <activity android:name=".vuotchon" />
         <activity android:name=".chucnang" />
