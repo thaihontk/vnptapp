@@ -47,18 +47,20 @@ public class bieudo3 extends Activity implements GestureDetector.OnGestureListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bieudo3);
-
+        Intent intent = getIntent();
+        String a = intent.getStringExtra("chukyno");
+        final String urladd = intent.getStringExtra("urladd");
         bien();
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(bieudo3.this, chucnang.class);
+                Intent intent = new Intent(bieudo3.this,chucnang.class);
+                intent.putExtra("urladd",urladd);
                 startActivity(intent);
             }
         });
-        Intent intent = getIntent();
-        String a = intent.getStringExtra("datebieudo");
-        dulieu(a);
+
+        dulieu(a,urladd);
 
         this.mDetector = new GestureDetectorCompat(this,this);
         mDetector.setOnDoubleTapListener(this);
@@ -67,9 +69,9 @@ public class bieudo3 extends Activity implements GestureDetector.OnGestureListen
         pieChart = (PieChart)findViewById(R.id.pieChart);
         homeButton = (Button)findViewById(R.id.homeButton);
     }
-    private void dulieu(final String a){
+    private void dulieu(final String a, String urladd){
         //connect
-        String url ="http://10.97.47.23:8080/vidu1.php";
+        String url =urladd+"/vidu1.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -182,7 +184,7 @@ public class bieudo3 extends Activity implements GestureDetector.OnGestureListen
     }
     private void put(String a, String b){
         Intent intent = new Intent(this,thongtinckn.class);
-        intent.putExtra("datebieudo",a);
+        intent.putExtra("chukyno",a);
         intent.putExtra("madonvi",b);
         startActivity(intent);
     }
@@ -242,14 +244,17 @@ public class bieudo3 extends Activity implements GestureDetector.OnGestureListen
 
         boolean check = true;
         Intent intent = getIntent();
-        String datebieudo = intent.getStringExtra("datebieudo");
+        String chukyno = intent.getStringExtra("chukyno");
+        String urladd = intent.getStringExtra("urladd");
         if(X>Y){
             Intent intent1 = new Intent(this,bieudo1.class);
-            intent1.putExtra("datebieudo",datebieudo);
+            intent1.putExtra("datebieudo",chukyno);
+            intent1.putExtra("urladd",urladd);
             startActivity(intent1);
         }if(X<Y) {
             Intent intent1 = new Intent(this,bieudo2.class);
-            intent1.putExtra("datebieudo",datebieudo);
+            intent1.putExtra("datebieudo",chukyno);
+            intent1.putExtra("urladd",urladd);
             startActivity(intent1);
         }else  check = false;
         return check;

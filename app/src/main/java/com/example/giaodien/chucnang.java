@@ -38,40 +38,43 @@ public class chucnang extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chucnang);
-        bien();
-        bangchon();
         Intent intent = getIntent();
         int nhomnd_id;
         nhomnd_id = intent.getIntExtra("nhomnd_id",0);
+        final String urladd = intent.getStringExtra("urladd");
+
+        bien();
+        bangchon(urladd);
 
         bieudo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                put(bieudo1.class);
+                put(bieudo1.class,urladd);
             }
         });
         bieudo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                put(bieudo2.class);
+                put(bieudo2.class,urladd);
             }
         });
         bieudo3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                put(bieudo3.class);
+                put(bieudo3.class,urladd);
             }
         });
         baocuoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                put(baocuoc.class);
+                put(baocuoc.class,urladd);
             }
         });
     }
-    private void put(Class a){
+    private void put(Class a, String urladd){
         Intent intent = new Intent(this,a);
-        intent.putExtra("datebieudo",spinner.getSelectedItem().toString());
+        intent.putExtra("chukyno",spinner.getSelectedItem().toString());
+        intent.putExtra("urladd",urladd);
         startActivity(intent);
     }
     private void bien(){
@@ -83,9 +86,9 @@ public class chucnang extends AppCompatActivity {
         spinner = (Spinner)findViewById(R.id.spinner);
 
     }
-    private void bangchon(){
+    private void bangchon(String urladd){
         final List<String> arr = new ArrayList<>();
-        String url ="http://10.97.47.23:8080/ckno.php";
+        String url =urladd+"/ckno.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

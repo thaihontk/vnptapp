@@ -42,16 +42,17 @@ public class thongtinckn extends AppCompatActivity {
         setContentView(R.layout.activity_thongtinckn);
         bien();
         Intent intent = getIntent();
-        String datebieudo = intent.getStringExtra("datebieudo");
+        String datebieudo = intent.getStringExtra("chukyno");
         String madonvi = intent.getStringExtra("madonvi");
-        dulieu(datebieudo,madonvi);
+        final String urladd = intent.getStringExtra("urladd");
+        dulieu(datebieudo,madonvi,urladd);
     }
     public void bien(){
         barChart = (BarChart)findViewById(R.id.barChart);
         homeButton = (Button)findViewById(R.id.homeButton);
     }
-    public void dulieu(final String a, final String b){
-        String url ="http://10.97.47.23:8080/test4.php";
+    public void dulieu(final String a, final String b, String urladd){
+        String url =urladd+"/test4.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

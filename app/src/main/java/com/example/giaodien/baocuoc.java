@@ -26,32 +26,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class baocuoc extends AppCompatActivity {
-    Button btnTT, btnTB;
-    EditText textThang;
+    Button btntracuu;
+    EditText matb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baocuoc);
         bien();
-        btnTT.setOnClickListener(new View.OnClickListener() {
+        Intent intent = getIntent();
+        final String chukyno = intent.getStringExtra("chukyno");
+        final String urladd = intent.getStringExtra("urladd");
+        btntracuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dulieu();
+                Intent intent = new Intent(baocuoc.this, thongtinbaocuoc.class);
+                intent.putExtra("chukyno", chukyno);
+                intent.putExtra("matb", matb.getText().toString());
+                intent.putExtra("urladd", urladd);
+                startActivity(intent);
             }
         });
-        btnTB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dulieu2();
-                /*Intent intent = new Intent(baocuoc.this, thongtinbaocuoc.class);
-                startActivity(intent);*/
-            }
-        });
+
     }
     private void bien(){
-        btnTT = (Button)findViewById(R.id.btnTT);
-        btnTB = (Button)findViewById(R.id.btnTB);
-        textThang = (EditText)findViewById(R.id.textThang);
+        btntracuu = (Button)findViewById(R.id.btntracuu);
+        matb = (EditText)findViewById(R.id.matb);
     }
     private void dulieu(){
         String url ="http://10.97.47.23:8080/dvthu.php";

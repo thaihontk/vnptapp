@@ -48,18 +48,19 @@ public class bieudo2 extends Activity implements GestureDetector.OnGestureListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bieudo2);
-
+        Intent intent = getIntent();
+        String a = intent.getStringExtra("chukyno");
+        final String urladd = intent.getStringExtra("urladd");
         bien();
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(bieudo2.this, chucnang.class);
+                Intent intent = new Intent(bieudo2.this,chucnang.class);
+                intent.putExtra("urladd",urladd);
                 startActivity(intent);
             }
         });
-        Intent intent = getIntent();
-        String a = intent.getStringExtra("datebieudo");
-        dulieu(a);
+        dulieu(a,urladd);
 
         this.mDetector = new GestureDetectorCompat(this,this);
         mDetector.setOnDoubleTapListener(this);
@@ -68,9 +69,9 @@ public class bieudo2 extends Activity implements GestureDetector.OnGestureListen
         pieChart = (PieChart)findViewById(R.id.pieChart);
         homeButton = (Button)findViewById(R.id.homeButton);
     }
-    private void dulieu(final String a){
+    private void dulieu(final String a, String urladd){
         //connect
-        String url ="http://10.97.47.23:8080/vidu1.php";
+        String url =urladd+"/vidu1.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -266,14 +267,17 @@ public class bieudo2 extends Activity implements GestureDetector.OnGestureListen
         Y = Math.abs(Y);
         boolean check = true;
         Intent intent = getIntent();
-        String datebieudo = intent.getStringExtra("datebieudo");
+        String chukyno = intent.getStringExtra("chukyno");
+        String urladd = intent.getStringExtra("urladd");
         if(X>Y){
             Intent intent1 = new Intent(this,bieudo3.class);
-            intent1.putExtra("datebieudo",datebieudo);
+            intent1.putExtra("datebieudo",chukyno);
+            intent1.putExtra("urladd",urladd);
             startActivity(intent1);
         }if(X<Y) {
             Intent intent1 = new Intent(this,bieudo1.class);
-            intent1.putExtra("datebieudo",datebieudo);
+            intent1.putExtra("datebieudo",chukyno);
+            intent1.putExtra("urladd",urladd);
             startActivity(intent1);
         }else  check = false;
         return check;

@@ -1,6 +1,7 @@
 package com.example.giaodien;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -48,12 +49,16 @@ public class thongtinbaocuoc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thongtinbaocuoc);
-        String chukyno = "20190501";
-        String matb="3823755";
+        //String chukyno = "20190501";
+        //String matb="3823755";
+        Intent intent = getIntent();
+        String chukyno = intent.getStringExtra("chukyno");
+        String matb = intent.getStringExtra("matb");
+        final String urladd = intent.getStringExtra("urladd");
         bien();
-        //Toast.makeText(getApplicationContext(),doichu("1001000"), Toast.LENGTH_LONG).show();
-        dulieu(chukyno);
-        dulieu2(matb,chukyno);
+        //Toast.makeText(getApplicationContext(),matb, Toast.LENGTH_LONG).show();
+        dulieu(chukyno,urladd);
+        dulieu2(matb,chukyno,urladd);
         in.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -92,8 +97,8 @@ public class thongtinbaocuoc extends AppCompatActivity {
         sotien = (TextView)findViewById(R.id.sotien);
     }
 
-    private void dulieu(final String chukyno){
-        String url ="http://10.97.47.23:8080/dvthu.php";
+    private void dulieu(final String chukyno, String urladd){
+        String url =urladd+"/dvthu.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -149,7 +154,7 @@ public class thongtinbaocuoc extends AppCompatActivity {
                     nganhang.setText(vnganhang);
 
                     ////////////
-                    Toast.makeText(getApplicationContext(),thang+" "+nam, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),thang+" "+nam, Toast.LENGTH_LONG).show();
                 }catch (JSONException e){
                     Toast.makeText(getApplicationContext(),e.toString(), Toast.LENGTH_LONG).show();
                 }
@@ -171,8 +176,8 @@ public class thongtinbaocuoc extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
-    private void dulieu2(final String matb, final String chukyno) {
-        String url ="http://10.97.47.23:8080/dvthu2.php";
+    private void dulieu2(final String matb, final String chukyno, final String urladd) {
+        String url =urladd+"/dvthu2.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -205,7 +210,7 @@ public class thongtinbaocuoc extends AppCompatActivity {
                     vat.setText(vvat);
                     tongkhuyenmai.setText(vkhuyenmai);
                     tongthanhtoan.setText(vtongtien);
-                    doichu(vtongtien);
+                    doichu(vtongtien,urladd);
                     /////////////
 
                     //Toast.makeText(getApplicationContext(),doichu(vtongtien).toString()+" set text ", Toast.LENGTH_LONG).show();
@@ -277,9 +282,9 @@ public class thongtinbaocuoc extends AppCompatActivity {
         // close the document
         document.close();
     }
-    private void doichu(final String sotien1){
+    private void doichu(final String sotien1, String urladd){
         final String[] tien = {new String("")};
-        String url ="http://10.97.47.23:8080/doichu.php";
+        String url =urladd+"/doichu.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -289,7 +294,7 @@ public class thongtinbaocuoc extends AppCompatActivity {
                     JSONArray jsonArray = new JSONArray(response.trim());
                     JSONObject jsonObject = (JSONObject)jsonArray.get(0);
                     tien[0] = jsonObject.getString("KQ");
-                    sotien.setText(tien[0]);
+                    sotien.setText("Bằng chữ: "+tien[0]);
                     //Toast.makeText(getApplicationContext(),tien[0]+" ", Toast.LENGTH_LONG).show();
                 }catch (JSONException e){
                     Toast.makeText(getApplicationContext(),e.toString()+" lỗi excep", Toast.LENGTH_LONG).show();

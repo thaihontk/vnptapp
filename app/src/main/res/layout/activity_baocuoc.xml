@@ -19,17 +19,13 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập tháng"
-            android:id="@+id/textThang"/>
+            android:hint="Nhập mã thuê bao"
+            android:id="@+id/matb"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="trung tâm"
-            android:id="@+id/btnTT"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="thuê bao"
-            android:id="@+id/btnTB"/>
+            android:text="tra cứu "
+            android:id="@+id/btntracuu"/>
+
     </LinearLayout>
 </LinearLayout>
