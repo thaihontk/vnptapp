@@ -19,7 +19,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập mã thuê bao"
+            android:hint="Nhập mã thanh toán"
             android:id="@+id/matb"/>
         <Button
             android:layout_width="wrap_content"

@@ -271,12 +271,12 @@ public class bieudo2 extends Activity implements GestureDetector.OnGestureListen
         String urladd = intent.getStringExtra("urladd");
         if(X>Y){
             Intent intent1 = new Intent(this,bieudo3.class);
-            intent1.putExtra("datebieudo",chukyno);
+            intent1.putExtra("chukyno",chukyno);
             intent1.putExtra("urladd",urladd);
             startActivity(intent1);
         }if(X<Y) {
             Intent intent1 = new Intent(this,bieudo1.class);
-            intent1.putExtra("datebieudo",chukyno);
+            intent1.putExtra("chukyno",chukyno);
             intent1.putExtra("urladd",urladd);
             startActivity(intent1);
         }else  check = false;

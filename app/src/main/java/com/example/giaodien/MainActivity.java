@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edituser, editpassword;
     Button btndangky, btndangnhap, btnthoat,buttonTest;
     int nhomnd_id;
-    String urladd ="http://10.97.47.23:8080";
+    String urladd ="http://10.97.46.80:8080";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
         buttonTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, thongtinbaocuoc.class);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Để chơi cho có!", Toast.LENGTH_LONG).show();
             }
         });
     }

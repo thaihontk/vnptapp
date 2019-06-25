@@ -51,7 +51,7 @@ public class bieudo1 extends Activity implements GestureDetector.OnGestureListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bieudo1);
         Intent intent = getIntent();
-        String datebieudo = intent.getStringExtra("chukyno");
+        String chukyno = intent.getStringExtra("chukyno");
         final String urladd = intent.getStringExtra("urladd");
         bien();
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class bieudo1 extends Activity implements GestureDetector.OnGestureListen
             }
         });
 
-        dulieu(datebieudo,urladd);
+        dulieu(chukyno,urladd);
 
         this.mDetector = new GestureDetectorCompat(this,this);
         mDetector.setOnDoubleTapListener(this);
