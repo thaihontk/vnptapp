@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                // Toast.makeText(getApplicationContext(),"Để chơi cho có!", Toast.LENGTH_LONG).show();
-                put(chitietcuocgoi.class);
+                put(thanhtoan.class);
             }
         });
     }

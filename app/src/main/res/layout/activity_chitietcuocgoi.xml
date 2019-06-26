@@ -30,6 +30,11 @@
             android:text="tra cứu chi tiết cuộc gọi"
             android:id="@+id/btn"
             android:layout_gravity="right"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnin"
+            android:text="in" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

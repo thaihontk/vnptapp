@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 public class chucnang extends AppCompatActivity {
-    Button bieudo1, bieudo2, bieudo3, baocuoc, bchitietcuocgoi;
+    Button bieudo1, bieudo2, bieudo3, baocuoc, bchitietcuocgoi, chitietthanhtoan;
     TextView datebieudo;
     Spinner spinner;
     @Override
@@ -76,6 +76,12 @@ public class chucnang extends AppCompatActivity {
                 put(chitietcuocgoi.class,urladd);
             }
         });
+        chitietthanhtoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                put(thanhtoan.class,urladd);
+            }
+        });
     }
     private void put(Class a, String urladd){
         Intent intent = new Intent(this,a);
@@ -89,6 +95,7 @@ public class chucnang extends AppCompatActivity {
         bieudo2 = (Button)findViewById(R.id.bieudo2);
         bieudo3 = (Button)findViewById(R.id.bieudo3);
         baocuoc = (Button)findViewById(R.id.baocuoc);
+        chitietthanhtoan = (Button)findViewById(R.id.chitietthanhtoan);
         bchitietcuocgoi = (Button)findViewById(R.id.chitietcuocgoi);
         spinner = (Spinner)findViewById(R.id.spinner);
 

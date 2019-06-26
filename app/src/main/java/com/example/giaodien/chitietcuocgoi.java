@@ -49,7 +49,7 @@ import static com.example.giaodien.thongtinbaocuoc.loadBitmapFromView;
 public class chitietcuocgoi extends AppCompatActivity {
     EditText thuebaoid;
     TextView sdt;
-    Button btn;
+    Button btn, btnin;
     Bitmap bitmap;
     LinearLayout linepdf;
     RecyclerView mRecyclerView;
@@ -74,17 +74,23 @@ public class chitietcuocgoi extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bangchon(urladd, chukyno);
-                /*bitmap = loadBitmapFromView(linepdf, linepdf.getWidth(), linepdf.getHeight());
-                createPdf();*/
             }
         });
-
+        btnin.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                bitmap = loadBitmapFromView(linepdf, linepdf.getWidth(), linepdf.getHeight());
+                createPdf();
+            }
+        });
     }
 
     private void bien(){
         thuebaoid = (EditText)findViewById(R.id.thuebaoid);
         sdt = (TextView)findViewById(R.id.sdt);
         btn = (Button)findViewById(R.id.btn);
+        btnin = (Button)findViewById(R.id.btnin);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycleview);
         linepdf = (LinearLayout)findViewById(R.id.linepdf);
     }

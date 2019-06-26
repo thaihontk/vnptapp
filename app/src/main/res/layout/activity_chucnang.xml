@@ -45,6 +45,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/chitietcuocgoi"
         android:text="Chi tiết cuộc gọi"/>
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chitietthanhtoan"
+        android:text="Chi tiết thanh toán"/>
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>
