@@ -90,7 +90,7 @@ public class chitietcuocgoi extends AppCompatActivity {
     }
 
     private void bangchon(String urladd, final String chukyno){
-        String url =urladd+"/chitietthuebao.php";
+        String url =urladd+"/chitietcuocgoi.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

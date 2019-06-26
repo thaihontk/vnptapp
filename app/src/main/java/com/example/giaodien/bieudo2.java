@@ -71,7 +71,7 @@ public class bieudo2 extends Activity implements GestureDetector.OnGestureListen
     }
     private void dulieu(final String a, String urladd){
         //connect
-        String url =urladd+"/vidu1.php";
+        String url =urladd+"/bieudo1.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -153,29 +153,7 @@ public class bieudo2 extends Activity implements GestureDetector.OnGestureListen
                         }
                     });
                     ////////////////
-                    /*pieChart.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View v) {
-                            pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-                                @Override
-                                public void onValueSelected(Entry e, Highlight h) {
-                                    float thutu1 = h.getX();
-                                    int index = h.getDataSetIndex();
-                                    int thutu = Math.round(thutu1);
-                                    int i;
-                                    String dv;
 
-                                    Toast.makeText(getApplicationContext(),index +""+thutu , Toast.LENGTH_LONG).show();
-                                }
-
-                                @Override
-                                public void onNothingSelected() {
-
-                                }
-                            });
-                            return true;
-                        }
-                    });*/
                     //het bieu do
                 }catch(JSONException e){
                     Toast.makeText(getApplicationContext(),"Lỗi: nhập sai chu kì nợ", Toast.LENGTH_LONG).show();

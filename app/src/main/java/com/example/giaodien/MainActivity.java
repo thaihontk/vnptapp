@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         }else return true;
     }
     private void dangnhap(){
-        String url =urladd+"/test2.php";
+        String url =urladd+"/dangnhap1.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

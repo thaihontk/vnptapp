@@ -71,7 +71,7 @@ public class bieudo3 extends Activity implements GestureDetector.OnGestureListen
     }
     private void dulieu(final String a, String urladd){
         //connect
-        String url =urladd+"/vidu1.php";
+        String url =urladd+"/bieudo1.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

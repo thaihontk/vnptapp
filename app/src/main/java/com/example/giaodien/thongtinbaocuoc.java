@@ -98,7 +98,7 @@ public class thongtinbaocuoc extends AppCompatActivity {
     }
 
     private void dulieu(final String chukyno, String urladd){
-        String url =urladd+"/dvthu.php";
+        String url =urladd+"/baocuoc1.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -177,7 +177,7 @@ public class thongtinbaocuoc extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
     private void dulieu2(final String matb, final String chukyno, final String urladd) {
-        String url =urladd+"/dvthu2.php";
+        String url =urladd+"/baocuoc2.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

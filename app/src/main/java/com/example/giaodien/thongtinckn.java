@@ -52,7 +52,7 @@ public class thongtinckn extends AppCompatActivity {
         homeButton = (Button)findViewById(R.id.homeButton);
     }
     public void dulieu(final String a, final String b, String urladd){
-        String url =urladd+"/test4.php";
+        String url =urladd+"/thongtinckn.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

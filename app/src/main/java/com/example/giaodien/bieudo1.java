@@ -74,7 +74,7 @@ public class bieudo1 extends Activity implements GestureDetector.OnGestureListen
         homeButton = (Button)findViewById(R.id.homeButton);
     }
     public void dulieu(final String a, final String urladd){
-        String url =urladd+"/vidu1.php";
+        String url =urladd+"/bieudo1.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
