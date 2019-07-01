@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".thanhtoan"></activity>
+        <activity android:name=".phancong"></activity>
+        <activity android:name=".chitieu" />
+        <activity android:name=".thanhtoan" />
         <activity android:name=".chitietcuocgoi" />
         <activity android:name=".thongtinbaocuoc" />
         <activity android:name=".baocuoc" />

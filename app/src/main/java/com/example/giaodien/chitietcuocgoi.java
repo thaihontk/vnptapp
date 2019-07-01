@@ -117,7 +117,7 @@ public class chitietcuocgoi extends AppCompatActivity {
                         tien.add(jsonObject[i].getString("TIEN"));
                         tongtien = tongtien + jsonObject[i].getInt("TIEN");
                     };
-                    sdt.setText("CHI TIẾT CUỘC GỌI SỐ ĐIỆN THOẠI: "+thuebaoid.getText().toString()+"    TỔNG TIỀN: "+tongtien);
+                    //sdt.setText("CHI TIẾT CUỘC GỌI SỐ ĐIỆN THOẠI: "+thuebaoid.getText().toString()+"    TỔNG TIỀN: "+tongtien);
                     //Toast.makeText(getApplicationContext(),gio.get(2), Toast.LENGTH_SHORT).show();
                     //xử lý dữ liệu
                     mRcvAdapter = new RecyclerViewAdapter(ngay,gio,maynghe,giay,tenvung,tien);

@@ -50,5 +50,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/chitietthanhtoan"
         android:text="Chi tiết thanh toán"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chitieu"
+        android:text="Chỉ tiêu"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phancong"
+        android:text="Phân công công việc"/>
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>

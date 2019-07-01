@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 public class chucnang extends AppCompatActivity {
-    Button bieudo1, bieudo2, bieudo3, baocuoc, bchitietcuocgoi, chitietthanhtoan;
+    Button bieudo1, bieudo2, bieudo3, baocuoc, bchitietcuocgoi, chitietthanhtoan, chitieu, phancong;
     TextView datebieudo;
     Spinner spinner;
     @Override
@@ -82,6 +82,32 @@ public class chucnang extends AppCompatActivity {
                 put(thanhtoan.class,urladd);
             }
         });
+        chitieu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                put(chitieu.class,urladd);
+            }
+        });
+        phancong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                put(phancong.class,urladd);
+            }
+        });
+        check(nhomnd_id);
+    }
+    private void check(int nhomnd_id){
+        switch (nhomnd_id){
+            case 2:
+                baocuoc.setVisibility(View.GONE);
+                chitietthanhtoan.setVisibility(View.GONE);
+                bchitietcuocgoi.setVisibility(View.GONE);
+                break;
+            case 3:
+                bieudo1.setVisibility(View.GONE);
+                bieudo2.setVisibility(View.GONE);
+                bieudo3.setVisibility(View.GONE);
+        }
     }
     private void put(Class a, String urladd){
         Intent intent = new Intent(this,a);
@@ -97,6 +123,8 @@ public class chucnang extends AppCompatActivity {
         baocuoc = (Button)findViewById(R.id.baocuoc);
         chitietthanhtoan = (Button)findViewById(R.id.chitietthanhtoan);
         bchitietcuocgoi = (Button)findViewById(R.id.chitietcuocgoi);
+        chitieu = (Button)findViewById(R.id.chitieu);
+        phancong = (Button)findViewById(R.id.phancong);
         spinner = (Spinner)findViewById(R.id.spinner);
 
     }

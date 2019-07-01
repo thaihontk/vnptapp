@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edituser, editpassword;
     Button btndangky, btndangnhap, btnthoat,buttonTest;
     int nhomnd_id;
-    String urladd ="http://10.97.46.80:8080";
+    String urladd ="http://10.97.46.101:8080";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
