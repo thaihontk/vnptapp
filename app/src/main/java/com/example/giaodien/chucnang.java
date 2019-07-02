@@ -32,18 +32,23 @@ import java.util.Map;
 
 public class chucnang extends AppCompatActivity {
     Button bieudo1, bieudo2, bieudo3, baocuoc, bchitietcuocgoi, chitietthanhtoan, chitieu, phancong;
-    TextView datebieudo;
+    TextView datebieudo, tennd;
     Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chucnang);
         Intent intent = getIntent();
-        int nhomnd_id;
+        final int nhomnd_id;
         nhomnd_id = intent.getIntExtra("nhomnd_id",0);
+        final String manv = intent.getStringExtra("manv");
         final String urladd = intent.getStringExtra("urladd");
+        final String vtennd = intent.getStringExtra("tennd");
 
+        //Toast.makeText(getApplicationContext(),vtennd+" mã bên chucnang", Toast.LENGTH_SHORT).show();
         bien();
+
+        tennd.setText("Chào "+vtennd);
         bangchon(urladd);
 
         bieudo1.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +96,11 @@ public class chucnang extends AppCompatActivity {
         phancong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                put(phancong.class,urladd);
+                Intent intent = new Intent(chucnang.this,phancong.class);
+                intent.putExtra("chukyno",spinner.getSelectedItem().toString());
+                intent.putExtra("manv",manv);
+                intent.putExtra("urladd",urladd);
+                startActivity(intent);
             }
         });
         check(nhomnd_id);
@@ -126,7 +135,7 @@ public class chucnang extends AppCompatActivity {
         chitieu = (Button)findViewById(R.id.chitieu);
         phancong = (Button)findViewById(R.id.phancong);
         spinner = (Spinner)findViewById(R.id.spinner);
-
+        tennd = (TextView)findViewById(R.id.tennd);
     }
     private void bangchon(String urladd){
         final List<String> arr = new ArrayList<>();

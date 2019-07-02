@@ -86,8 +86,15 @@ public class MainActivity extends AppCompatActivity {
                         JSONArray jsonArray = new JSONArray(response.trim());
                         JSONObject jsonObject = (JSONObject)jsonArray.get(0);
                         int nhomnd_id = jsonObject.getInt("NHOMND_ID");
-                        //Toast.makeText(getApplicationContext(),nhomnd_id+" ", Toast.LENGTH_SHORT).show();
-                        put_dn(nhomnd_id);
+                        String manv = jsonObject.getString("NGUOIDUNG_ID");
+                        String tennd = jsonObject.getString("TEN_ND");
+                        Toast.makeText(getApplicationContext(),manv+" mã nhân viên dangnhap ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this,chucnang.class);
+                        intent.putExtra("nhomnd_id",nhomnd_id);
+                        intent.putExtra("manv",manv);
+                        intent.putExtra("urladd",urladd);
+                        intent.putExtra("tennd",tennd);
+                        startActivity(intent);
                         switch (nhomnd_id) {
                             case 1:
                                 Toast.makeText(getApplicationContext(), "Đăng nhập thành công với quyền quản trị", Toast.LENGTH_SHORT).show();
@@ -164,12 +171,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     };
-    private void put_dn(int nhomnd_id){
-        Intent intent = new Intent(this,chucnang.class);
-        intent.putExtra("nhomnd_id",nhomnd_id);
-        intent.putExtra("urladd",urladd);
-        startActivity(intent);
-    }
     private void put(Class cl){
         Intent intent = new Intent(this,cl);
         intent.putExtra("chukyno","20181201");

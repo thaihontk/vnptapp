@@ -43,15 +43,17 @@ public class phancong extends AppCompatActivity {
         Intent intent = getIntent();
         final String urladd = intent.getStringExtra("urladd");
         final String chukyno = intent.getStringExtra("chukyno");
+        final String manv = intent.getStringExtra("manv");
+        Toast.makeText(getApplicationContext(),manv+" mã nhân viên  ben phan cpng", Toast.LENGTH_SHORT).show();
         bien();
-        bangchon(urladd,chukyno);
+        bangchon(urladd,chukyno,manv);
     }
     private void bien(){
         tennhanvien = (TextView)findViewById(R.id.tennhanvien);
         manv = (TextView)findViewById(R.id.manv);
         recyclerViewphancong = (RecyclerView)findViewById(R.id.recycleviewphancong);
     }
-    private void bangchon(String urladd, final String chukyno){
+    private void bangchon(String urladd, final String chukyno, final String vmanv){
         String url =urladd+"/huynhvanthong.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -94,7 +96,7 @@ public class phancong extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                //params.put("mact",mact.getText().toString());
+                params.put("manv", vmanv);
                 params.put("chukyno",chukyno);
                 return params;
             }
