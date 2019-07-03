@@ -52,8 +52,8 @@ public class baocuoc extends AppCompatActivity {
         btntracuu = (Button)findViewById(R.id.btntracuu);
         matb = (EditText)findViewById(R.id.matb);
     }
-    private void dulieu(){
-        String url ="http://10.97.47.23:8080/baocuoc1.php";
+    private void dulieu(String urladd){
+        String url =urladd+"/baocuoc1.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -98,8 +98,8 @@ public class baocuoc extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
-    private void dulieu2() {
-            String url ="http://10.97.47.23:8080/baocuoc2.php";
+    private void dulieu2(String urladd) {
+            String url =urladd+"/baocuoc2.php";
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override

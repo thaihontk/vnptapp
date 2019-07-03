@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
                         int nhomnd_id = jsonObject.getInt("NHOMND_ID");
                         String manv = jsonObject.getString("NGUOIDUNG_ID");
                         String tennd = jsonObject.getString("TEN_ND");
-                        Toast.makeText(getApplicationContext(),manv+" mã nhân viên dangnhap ", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),manv+" mã nhân viên dangnhap ", Toast.LENGTH_SHORT).show();
+
                         Intent intent = new Intent(MainActivity.this,chucnang.class);
                         intent.putExtra("nhomnd_id",nhomnd_id);
                         intent.putExtra("manv",manv);

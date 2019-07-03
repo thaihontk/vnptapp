@@ -54,7 +54,7 @@ public class phancong extends AppCompatActivity {
         recyclerViewphancong = (RecyclerView)findViewById(R.id.recycleviewphancong);
     }
     private void bangchon(String urladd, final String chukyno, final String vmanv){
-        String url =urladd+"/huynhvanthong.php";
+        String url =urladd+"/phancong.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

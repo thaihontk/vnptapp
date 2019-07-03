@@ -103,20 +103,68 @@ public class chucnang extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        check(nhomnd_id);
+        check(urladd,nhomnd_id);
     }
-    private void check(int nhomnd_id){
-        switch (nhomnd_id){
-            case 2:
-                baocuoc.setVisibility(View.GONE);
-                chitietthanhtoan.setVisibility(View.GONE);
-                bchitietcuocgoi.setVisibility(View.GONE);
-                break;
-            case 3:
-                bieudo1.setVisibility(View.GONE);
-                bieudo2.setVisibility(View.GONE);
-                bieudo3.setVisibility(View.GONE);
-        }
+    private void check(final String urladd,final int nhomnd_id){
+        String url =urladd+"/nhomndid.php";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Toast.makeText(getApplicationContext(),response.trim(), Toast.LENGTH_LONG).show();
+                try{
+                    JSONArray jsonArray = new JSONArray(response.trim());
+                    int sochucnang = jsonArray.length();
+                    JSONObject jsonObject[] = new JSONObject[sochucnang];
+                    String id_chucnang[] = new String[sochucnang];
+                    for(int i=0;i<sochucnang;i++){
+                        jsonObject[i] = (JSONObject)jsonArray.get(i);
+                        id_chucnang[i] = jsonObject[i].getString("ID_CHUCNANG");
+                        switch (id_chucnang[i]){
+                            case "1":
+                                bieudo1.setVisibility(View.VISIBLE);
+                                break;
+                            case "2":
+                                bieudo2.setVisibility(View.VISIBLE);
+                                bieudo3.setVisibility(View.VISIBLE);
+                                break;
+                            case "3":
+                                baocuoc.setVisibility(View.VISIBLE);
+                                break;
+                            case "4":
+                                bchitietcuocgoi.setVisibility(View.VISIBLE);
+                                break;
+                            case "5":
+                                chitietthanhtoan.setVisibility(View.VISIBLE);
+                                break;
+                            case "6":
+                                chitieu.setVisibility(View.VISIBLE);
+                                break;
+                            case "7":
+                                phancong.setVisibility(View.VISIBLE);
+                                break;
+                        }
+                    };
+                    //Toast.makeText(getApplicationContext(), id_chucnang[1], Toast.LENGTH_SHORT).show();
+                }catch (JSONException e){
+                    Toast.makeText(getApplicationContext(), "Lỗi "+e.toString(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(), Toast.LENGTH_LONG).show();
+            }
+        } ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("nhomndid",String.valueOf(nhomnd_id));
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
     private void put(Class a, String urladd){
         Intent intent = new Intent(this,a);
@@ -136,6 +184,15 @@ public class chucnang extends AppCompatActivity {
         phancong = (Button)findViewById(R.id.phancong);
         spinner = (Spinner)findViewById(R.id.spinner);
         tennd = (TextView)findViewById(R.id.tennd);
+
+        bieudo1.setVisibility(View.GONE);
+        bieudo2.setVisibility(View.GONE);
+        bieudo3.setVisibility(View.GONE);
+        baocuoc.setVisibility(View.GONE);
+        bchitietcuocgoi.setVisibility(View.GONE);
+        chitietthanhtoan.setVisibility(View.GONE);
+        phancong.setVisibility(View.GONE);
+        chitieu.setVisibility(View.GONE);
     }
     private void bangchon(String urladd){
         final List<String> arr = new ArrayList<>();
@@ -145,12 +202,11 @@ public class chucnang extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 //Toast.makeText(getApplicationContext(),response.trim(), Toast.LENGTH_LONG).show();
-
                 try {
                     JSONArray jsonArray = new JSONArray(response.trim());
-                    JSONObject jsonObject[] = new JSONObject[20];
+                    JSONObject jsonObject[] = new JSONObject[jsonArray.length()];
 
-                    for(int i=0;i<7;i++){
+                    for(int i=0;i<jsonArray.length();i++){
                         jsonObject[i] = (JSONObject)jsonArray.get(i);
                         arr.add(jsonObject[i].getString("CHUKYNO"));
                     };
